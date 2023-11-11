@@ -1,0 +1,30 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo "Installing dependencies for Lambda Function 1..."
+      - pip install -r LF1/requirements.txt -t LF1/lib
+
+      - echo "Installing dependencies for Lambda Function 2..."
+      - pip install -r LF2/requirements.txt -t LF2/lib
+
+  build:
+    commands:
+      - echo "Zipping deployment package for Lambda Function 1..."
+      - cd LF1/lib
+      - zip -r9 ../../deployment_package1.zip .
+      - cd ../..
+      - zip -g deployment_package1.zip LF1/lambda_function.py
+
+      - echo "Zipping deployment package for Lambda Function 2..."
+      - cd LF2/lib
+      - zip -r9 ../../deployment_package2.zip .
+      - cd ../..
+      - zip -g deployment_package2.zip LF2/lambda_function.py
+      
+artifacts:
+  files:
+    - deployment_package1.zip
+    - deployment_package2.zip
