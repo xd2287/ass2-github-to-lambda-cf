@@ -22,7 +22,7 @@ lex_client = boto3.client('lexv2-runtime')
 
 def lambda_handler(event, context):
     # TODO implement
-    print("Lambda v1.4")
+    print("Lambda v1.1")
     print("event is: ",event)
     
     # msg_from_user = "show me cat"
