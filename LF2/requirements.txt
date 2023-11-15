@@ -1,3 +1,4 @@
 requests-aws4auth
 opensearch-py
 inflection
+aiohttp
